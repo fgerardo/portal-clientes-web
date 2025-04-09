@@ -12,19 +12,25 @@ export class HomeComponent {
   ];
 
   dataProductos = [
-    { name: 'Ahorro', value: 2 },
-    { name: 'Salud', value: 1 },
-    { name: 'Autos', value: 0 },
-    { name: 'Inversión', value: 0 },
-    { name: 'Protección', value: 0 },
-    { name: 'Daños', value: 0 }
+    { tipo: 'Salud', cantidad: 2, icono: 'fa-heartbeat' },
+    { tipo: 'Autos', cantidad: 1, icono: 'fa-car' },
+    { tipo: 'Daños', cantidad: 1, icono: 'fa-home' },
+    { tipo: 'Ahorro', cantidad: 1, icono: 'fa-piggy-bank' },
   ];
 
+  originalPolizas = [
+    { tipo: 'Salud', codigo: 'GMMC-3668', descripcion: 'S.A. BÁSICA', saldo: 4360000.13 },
+    { tipo: 'Salud', codigo: 'GMMI-43281', descripcion: 'S.A. BÁSICA', saldo: 145000000.00 },
+    { tipo: 'Autos', codigo: 'AUIN-68578', descripcion: 'PLAN AMPLIO' },
+    { tipo: 'Autos', codigo: 'AUIN-110039', descripcion: 'PLAN AMPLIO' },
+    { tipo: 'Ahorro', codigo: 'OPCD-390', descripcion: '', saldo: 1303564.92 },
+  ];
+  
   selectedProducto = '';
-  filteredPolizas = this.polizas;
+  
+filteredPolizas = [...this.originalPolizas];
 
-  filtrarPolizas(producto: string) {
-    this.selectedProducto = producto;
-    this.filteredPolizas = this.polizas.filter(p => p.producto === producto);
-  }
+filtrarPolizas(tipo: string) {
+  this.filteredPolizas = this.originalPolizas.filter(p => p.tipo === tipo);
+}
 }

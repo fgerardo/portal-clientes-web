@@ -1,0 +1,63 @@
+<header class="bg-white shadow-md">
+  <!-- Top bar -->
+  <div class="flex items-center justify-between px-6 py-4 border-b">
+    <div class="flex items-center gap-4">
+      <img src="assets/allianz-logo.png" alt="Allianz" class="h-10" />
+      <nav class="flex gap-4 text-sm font-semibold text-gray-700">
+        <a class="hover:text-blue-600 cursor-pointer">Siniestro</a>
+        <a class="hover:text-blue-600 cursor-pointer">Pagos</a>
+        <a class="hover:text-blue-600 cursor-pointer">Resumen</a>
+        <a class="hover:text-blue-600 cursor-pointer">Pensiones</a>
+        <a class="hover:text-blue-600 cursor-pointer">Vigencias</a>
+        <a class="hover:text-blue-600 cursor-pointer">Trámites</a>
+        <a class="hover:text-blue-600 cursor-pointer">Constancias Fiscales</a>
+        <a class="hover:text-blue-600 cursor-pointer">Quejas</a>
+      </nav>
+    </div>
+    <!-- Iconos de redes o config -->
+    <div class="flex gap-3">
+      <img src="assets/whatsapp.svg" class="h-5" />
+      <!-- Más íconos... -->
+    </div>
+  </div>
+
+  <!-- Bienvenida -->
+  <div class="flex justify-between items-center px-6 py-4 bg-gradient-to-r from-blue-100 to-blue-50">
+    <div class="flex items-center gap-4">
+      <img src="assets/user-avatar.jpg" alt="User Avatar" class="rounded-full w-14 h-14" />
+      <div>
+        <div class="text-sm text-gray-500">Bienvenido</div>
+        <div class="font-bold text-lg">{{ userName }}</div>
+        <div class="text-xs text-gray-400">Cliente Allianz desde {{ fechaIngreso }}</div>
+      </div>
+    </div>
+    <div class="text-sm text-gray-500">
+      Actualizado al: <span class="font-semibold">{{ hoy }}</span>
+    </div>
+  </div>
+
+  <!-- Donut Filtro -->
+  <div class="flex justify-center items-center py-6">
+    <div class="relative w-72 h-72 rounded-full flex items-center justify-center bg-white shadow-lg">
+      <svg class="absolute top-0 left-0 w-full h-full">
+        <circle
+          *ngFor="let producto of dataProductos; let i = index"
+          [attr.stroke-dasharray]="100"
+          [attr.stroke-dashoffset]="i * 60"
+          r="80"
+          cx="145"
+          cy="145"
+          stroke-width="40"
+          stroke="currentColor"
+          fill="none"
+          class="text-blue-300 cursor-pointer transition hover:text-blue-600"
+          (click)="seleccionarProducto(producto.tipo)">
+        </circle>
+      </svg>
+      <div class="text-center">
+        <div class="text-md font-bold">Filtrar</div>
+        <div class="text-sm text-gray-600">por producto</div>
+      </div>
+    </div>
+  </div>
+</header>
