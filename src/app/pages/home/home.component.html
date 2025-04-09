@@ -1,0 +1,48 @@
+<div class="home-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">Allianz</div>
+      <nav class="nav">
+        <button>🔔 Siniestro</button>
+        <button>💲 Pagos</button>
+        <button>📋 Resumen</button>
+        <button>📅 Vigencias</button>
+        <button>📂 Trámites</button>
+        <button>💵 Constancias Fiscales</button>
+        <button>📣 Quejas</button>
+        <button>⏏ Salir</button>
+      </nav>
+    </header>
+  
+    <!-- Usuario -->
+    <section class="usuario">
+      <div class="avatar">👤</div>
+      <div class="info">
+        <div class="bienvenida">Bienvenido</div>
+        <div class="nombre">{{ usuario.nombre }}</div>
+        <div class="cliente-desde">Cliente Allianz desde {{ usuario.fechaCliente }}</div>
+        <div class="actualizado">Actualizado al: {{ fechaActualizacion }}</div>
+      </div>
+    </section>
+  
+    <!-- Polizas -->
+    <section class="polizas">
+      <h2>📄 Mis Pólizas ({{ polizas.length }})</h2>
+      
+      <div class="grafica-categorias">
+        <div *ngFor="let cat of categorias" class="categoria">
+          <div class="icon">{{ cat.icon }}</div>
+          <div class="nombre">{{ cat.nombre }}</div>
+        </div>
+      </div>
+  
+      <div class="lista-polizas">
+        <div *ngFor="let poliza of polizas" class="poliza-card">
+          <div class="clave">{{ poliza.clave }}</div>
+          <div class="saldo">SALDO MONEDA LOCAL</div>
+          <div class="monto">{{ poliza.saldo }}</div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

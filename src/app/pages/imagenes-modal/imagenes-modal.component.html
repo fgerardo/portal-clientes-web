@@ -1,0 +1,34 @@
+<div class="modal-externo">
+    <div class="modal-interno">
+        <div class="contenedor-modal">
+            <div class="seleccion-imagenes">
+                <h2>Elige una de las imágenes.</h2>
+                <p>Esta será tu imagen de seguridad y la necesitarás para acceder a mi Cliente Allianz.</p>
+                <div class="imagenes-grid">
+                    <img *ngFor="let imagen of data.imagenes" [src]="imagen.url" class="imagen"
+                        [class.seleccionada]="imagen === imagenSeleccionada" (click)="seleccionarImagen(imagen)" />
+                </div>
+            </div>
+
+            <div class="imagen-seleccionada">
+                <h2>Imagen Seleccionada</h2>
+                <img *ngIf="imagenSeleccionada" [src]="imagenSeleccionada.url" class="imagen-grande" />
+                <div class="botones">
+                    <button *ngIf="data.flujo === '2'" class="btn-confirmar" (click)="mostrarConfirmacion()">Confirmar</button>
+                    <button *ngIf="data.flujo === '1'" class="btn-confirmar" (click)="seleccionarImagenConfirmada()">Confirmar</button>
+                    <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de confirmación -->
+        <div *ngIf="mostrarModalConfirmacion" class="modal-confirmacion">
+            <div class="contenido-confirmacion">
+                <h3>¿Deseas guardar tu imagen de seguridad seleccionada?</h3>
+                <p>Podrás cambiar esta imagen más tarde en la configuración de tu cuenta.</p>
+                <button class="btn-confirmar" (click)="guardarImagen()">Sí, guardar</button>
+                <button class="btn-cancelar" (click)="cerrarConfirmacion()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

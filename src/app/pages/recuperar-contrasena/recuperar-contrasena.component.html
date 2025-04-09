@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Recuperar Contraseña</h2>
+
+<mat-dialog-content>
+  <p class="instrucciones">Ingresa tu correo electrónico</p>
+  <small>(Se te enviará un correo con los pasos a seguir)</small>
+
+  <form #formCorreo="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Correo electrónico</mat-label>
+      <input
+        matInput
+        [(ngModel)]="email"
+        name="email"
+        type="email"
+        required
+        email
+        #emailField="ngModel"
+      />
+
+      <button
+        mat-icon-button
+        matSuffix
+        [disabled]="!formCorreo.valid"
+        (click)="onEnviar()"
+      >
+        <mat-icon>mail</mat-icon>
+      </button>
+
+      <mat-error *ngIf="emailField.invalid && emailField.touched">
+        Ingresa un correo válido.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onClose()">Cancelar</button>
+</mat-dialog-actions>

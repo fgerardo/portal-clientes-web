@@ -1,0 +1,58 @@
+/* Centramos todo el contenido del modal */
+.mat-dialog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Estilo para el título */
+.title-success {
+    color: black; /* Verde */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title-warning {
+    color: black;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title-default {
+    color: #000; /* Negro */
+}
+
+/* Estilo para el mensaje */
+.mensaje-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.mensaje-warning {
+    background-color: #fff3e0;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Estilo para las acciones del modal */
+.dialog-actions {
+    display: flex;
+    justify-content: center; /* Centra el botón */
+    width: 100%;
+}
+
+/* Estilo para el botón */
+.btn-cerrar {
+    background-color: black; /* Verde */
+    color: white;
+}
+

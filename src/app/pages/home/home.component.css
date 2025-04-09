@@ -1,0 +1,116 @@
+.home-container {
+    font-family: Arial, sans-serif;
+    padding: 1rem;
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #002f6c;
+      color: white;
+      padding: 0.5rem 1rem;
+  
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+  
+      .nav button {
+        background: none;
+        border: none;
+        color: white;
+        margin: 0 0.5rem;
+        cursor: pointer;
+      }
+    }
+  
+    .usuario {
+      display: flex;
+      align-items: center;
+      margin: 2rem 0;
+  
+      .avatar {
+        font-size: 4rem;
+        margin-right: 1rem;
+      }
+  
+      .info {
+        .bienvenida {
+          font-size: 1.1rem;
+          color: gray;
+        }
+        .nombre {
+          font-weight: bold;
+          font-size: 1.5rem;
+          color: #333;
+        }
+        .cliente-desde,
+        .actualizado {
+          color: #777;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  
+    .polizas {
+      h2 {
+        margin-bottom: 1rem;
+      }
+  
+      .grafica-categorias {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+  
+        .categoria {
+          width: 80px;
+          text-align: center;
+  
+          .icon {
+            font-size: 2rem;
+          }
+  
+          .nombre {
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+          }
+        }
+      }
+  
+      .lista-polizas {
+        display: flex;
+        gap: 1rem;
+  
+        .poliza-card {
+          background: #e6eef6;
+          border-radius: 10px;
+          padding: 1rem;
+          width: 200px;
+  
+          .clave {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+          }
+  
+          .saldo {
+            font-size: 0.8rem;
+            color: #555;
+          }
+  
+          .monto {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 0.3rem;
+          }
+        }
+  
+        .poliza-card:last-child {
+          background: #093d77;
+          color: white;
+        }
+      }
+    }
+  }
+  

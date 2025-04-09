@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>Crear cuenta</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="crearCuentaForm" (ngSubmit)="crearCuenta()">
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Producto</mat-label>
+        <mat-select formControlName="producto" required>
+          <mat-option value="" disabled>Seleccione un producto</mat-option>
+          <mat-option value="producto1">Producto 1</mat-option>
+          <mat-option value="producto2">Producto 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>No. Póliza</mat-label>
+        <input matInput formControlName="numeroPoliza" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Fecha Nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput type="email" formControlName="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre Completo</mat-label>
+      <input matInput formControlName="nombreCompleto" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Confirmar contraseña</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" required />
+    </mat-form-field>
+
+    <!-- <div class="captcha-container">
+      <img src="CAPTCHA_URL_AQUI" alt="Captcha" />
+      <a href="#" (click)="$event.preventDefault()">Refrescar CAPTCHA</a>
+    </div> -->
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Texto de verificación</mat-label>
+      <input matInput formControlName="captchaText" required />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-flat-button color="primary" type="submit" [disabled]="!crearCuentaForm.valid">Enviar</button>
+</mat-dialog-actions>

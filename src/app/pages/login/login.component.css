@@ -1,0 +1,181 @@
+/* Background styles */
+.login-container {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-image {
+    background: url('/./assets/background-family.jpg') center center no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Keeps it behind all other content */
+}
+
+/* Login box styles */
+.login-box {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.logo {
+    width: 250px;
+    margin-bottom: 5px;
+    height: auto;
+    /* Mantiene la relación de aspecto original de la imagen */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #003865;
+}
+
+/* Error message styles */
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Button styles */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #003865;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #008bb9;
+}
+
+/* Material form field customizations */
+mat-form-field {
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for depth */
+    margin-bottom: 20px;
+}
+
+/* Mat Input customization */
+mat-form-field .mat-input-element {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Remove the default red error border */
+mat-form-field.mat-form-field-invalid .mat-form-field-outline {
+    border-color: #ff3b30 !important;
+    /* Change red to another color (if desired) */
+}
+
+/* Remove unwanted white space below input */
+mat-form-field .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+/* Add a border color when input is focused */
+mat-form-field.mat-form-field-appearance-outline .mat-form-field-outline {
+    border-color: #003865;
+}
+
+/* Styles for input icons */
+mat-icon {
+    color: #003865;
+}
+
+/* Styles when inputs are focused */
+mat-form-field .mat-form-field-flex {
+    border-color: #003865;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 181, 239, 0.5);
+}
+
+/* Actions links styles */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.actions a {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.actions a:hover {
+    color: #003865;
+}
+
+
+.mat-mdc-form-field {
+    display: flex !important;
+    flex-direction: row !important;
+    /* Cambiar a fila (row) */
+    align-items: center !important;
+    /* Asegura que los elementos estén centrados */
+}
+
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    width: auto !important;
+    /* Elimina el ancho específico */
+    max-width: none !important;
+    /* Si hay un max-width aplicado, quítalo */
+}
+
+.mat-form-field .mat-mdc-form-field-subscript-wrapper {
+    width: auto !important;
+}
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.spinner img {
+    width: 50px;
+    /* Ajusta el tamaño del GIF según sea necesario */
+    height: 50px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.btn-login:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}

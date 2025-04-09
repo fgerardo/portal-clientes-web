@@ -1,0 +1,41 @@
+<div class="background-image"></div>
+
+<div class="img-background-new login-container">
+    <div class="login-box">
+        <img src="assets/LogoPortalClientes.png" alt="Logo Allianz" class="logo" />
+
+        <h1>Bienvenido a Cliente Allianz</h1>
+
+        <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+            <!-- Campo de usuario -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Usuario</mat-label>
+                <mat-icon matPrefix>person</mat-icon>
+                <input matInput type="text" name="username" [(ngModel)]="username" required />
+            </mat-form-field>
+
+            <!-- Campo de contraseña -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Contraseña</mat-label>
+                <mat-icon matPrefix>lock</mat-icon>
+                <input matInput type="password" name="password" [(ngModel)]="password" required />
+            </mat-form-field>
+
+            <!-- Error message -->
+            <div *ngIf="errorMessage" class="error"><strong> {{ errorMessage }}</strong></div>
+
+            <!-- Botón de login -->
+            <button type="submit" class="btn-login" [disabled]="loading">ENTRAR</button>
+
+            <!-- Spinner de carga -->
+            <div *ngIf="loading" class="spinner">Cargando...</div>
+        </form>
+
+        <div class="actions">
+            <!-- <a href="#" (click)="abrirModalCrearCuenta()">Crear Cuenta</a> -->
+            <!-- <a href="#" (click)="abrirModalCrearCuenta(); $event.preventDefault()">Crear Cuenta</a> -->
+            <button mat-button (click)="abrirModalCrearCuenta()">Crear Cuenta</button>
+            <button mat-button (click)="abrirRecuperarContrasena()">Recuperar Contraseña</button>
+        </div>
+    </div>
+</div>
