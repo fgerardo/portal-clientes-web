@@ -1,0 +1,74 @@
+<header>
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="logo">
+      <img src="assets/LogoPortalClientes.png" alt="Allianz" />
+    </div>
+    <div class="iconosRedes">
+      <img src="assets/redesSociales/whatsapp_logo2.png" class="img" alt="Whatsapp" />
+      <img src="assets/redesSociales/youtube-logo.png" class="img" alt="YouTube" />
+      <img src="assets/redesSociales/linkedin-logo.png" class="img" alt="Linkedin" />
+      <img src="assets/redesSociales/tw-logo.png" class="img" alt="Twitter" />
+      <img src="assets/redesSociales/fb-logo.png" class="img" alt="Facebook" />
+      <img src="assets/redesSociales/logoInsta.png" class="img" alt="Instagram" />
+      <img src="assets/redesSociales/mail-logo.png" class="img" alt="Mail" />
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-content>
+      <mat-toolbar class="menu-toolbar">
+        <div class="menu-links">
+          <a class="menu-item"><i class="fa fa-exclamation-triangle"></i><span>Siniestro</span></a>
+          <a class="menu-item"><i class="fa fa-usd"></i><span>Pagos</span></a>
+          <a class="menu-item"><i class="fa fa-list-alt"></i><span>Resumen</span></a>
+          <a class="menu-item"><i class="fa fa-users"></i><span>Pensiones</span></a>
+          <a class="menu-item"><i class="fa fa-calendar-check-o"></i><span>Vigencias</span></a>
+          <a class="menu-item"><i class="fa fa-files-o"></i><span>Trámites</span></a>
+          <a class="menu-item"><i class="fa fa-file-pdf-o"></i><span>Constancias</span></a>
+          <a class="menu-item"><i class="fa fa-inbox"></i><span>Quejas</span></a>
+          <a class="menu-item salir"><i class="fa fa-sign-out"></i><span>Salir</span></a>
+        </div>
+      </mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <!-- Info -->
+  <div class="info-shower">
+    <span class="boton-configuracion-movil">
+      <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+    </span>
+    <div class="info-shower-content">
+      <div class="user-image"></div>
+      <div class="user-info">
+        <p class="user-p">Bienvenido</p>
+        <p class="user-name">MAURICIO HUESCA RODRIGUEZ</p>
+        <div class="info-extra">
+          <p class="user-p">Cliente Allianz desde 01/09/2014</p>
+          <p class="user-p">Actualizado al: <strong>9/4/2025</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donut -->
+  <div class="donut-wrapper">
+    <h1>Mis Pólizas</h1>
+    <svg height="100%" width="100%" viewBox="0 0 400 400" id="donutSvg">
+      <!-- 1. Sectores de colores -->
+      <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)"
+        [attr.fill]="getColorForFamily(s.familia)" [attr.class]="s.class">
+      </path>
+
+      <!-- 2. Paths transparentes para clics -->
+      <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)" fill="transparent"
+        (click)="filtroDisponible(s.familia) && seleccionarProducto(s.familia)">
+      </path>
+
+      <!-- 3. Imagen encima (solo decorativa) -->
+      <image href="/assets/dona-seis-2021-01.png" x="0" y="0" height="400px" width="400px" />
+    </svg>
+  </div>
+
+</header>

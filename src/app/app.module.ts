@@ -14,12 +14,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ImagenesModalComponent } from './pages/imagenes-modal/imagenes-modal.component';
-import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
+
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MensajeModalComponent } from './pages/mensaje-modal/mensaje-modal.component';
 import { RecuperarContrasenaComponent } from './pages/recuperar-contrasena/recuperar-contrasena.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -30,7 +35,8 @@ import { RecuperarContrasenaComponent } from './pages/recuperar-contrasena/recup
     ImagenesModalComponent,
     CrearCuentaComponent,
     RecuperarContrasenaComponent,
-    MensajeModalComponent
+    MensajeModalComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,10 +53,15 @@ import { RecuperarContrasenaComponent } from './pages/recuperar-contrasena/recup
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule  
-    
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
   ],
-  providers: [MatDatepickerModule,{ provide: LOCALE_ID, useValue: 'es-MX' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-MX' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
