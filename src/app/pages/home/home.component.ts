@@ -3,37 +3,28 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  usuario = {
-    nombre: 'MAURICIO HUESCA RODRIGUEZ',
-    fechaCliente: '01/09/2014'
-  };
-
-  fechaActualizacion = '10/12/2024';
-
   polizas = [
-    {
-      clave: 'OPPT-10889',
-      saldo: '$645,525.04'
-    },
-    {
-      clave: 'OPPT-11016',
-      saldo: 'No disponible'
-    },
-    {
-      clave: 'PLU2-43804',
-      saldo: '$540,730.66'
-    }
+    { codigo: 'OPPT-10889', producto: 'Ahorro', saldo: 645525.04, descripcion: 'SALDO MONEDA LOCAL' },
+    { codigo: 'OPPT-11016', producto: 'Ahorro', saldo: null, descripcion: 'SALDO' },
+    { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' }
   ];
 
-  categorias = [
-    { nombre: 'Ahorro', icon: '💰' },
-    { nombre: 'Salud', icon: '🏥' },
-    { nombre: 'Daños', icon: '🏠' },
-    { nombre: 'Protección', icon: '☂️' },
-    { nombre: 'Inversión', icon: '🪙' },
-    { nombre: 'Autos', icon: '🚗' }
+  dataProductos = [
+    { name: 'Ahorro', value: 2 },
+    { name: 'Salud', value: 1 },
+    { name: 'Autos', value: 0 },
+    { name: 'Inversión', value: 0 },
+    { name: 'Protección', value: 0 },
+    { name: 'Daños', value: 0 }
   ];
+
+  selectedProducto = '';
+  filteredPolizas = this.polizas;
+
+  filtrarPolizas(producto: string) {
+    this.selectedProducto = producto;
+    this.filteredPolizas = this.polizas.filter(p => p.producto === producto);
+  }
 }
