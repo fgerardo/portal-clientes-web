@@ -1,48 +1,41 @@
-<div class="home-container">
-    <!-- Header -->
-    <header class="header">
-      <div class="logo">Allianz</div>
-      <nav class="nav">
-        <button>🔔 Siniestro</button>
-        <button>💲 Pagos</button>
-        <button>📋 Resumen</button>
-        <button>📅 Vigencias</button>
-        <button>📂 Trámites</button>
-        <button>💵 Constancias Fiscales</button>
-        <button>📣 Quejas</button>
-        <button>⏏ Salir</button>
-      </nav>
-    </header>
-  
-    <!-- Usuario -->
-    <section class="usuario">
-      <div class="avatar">👤</div>
-      <div class="info">
-        <div class="bienvenida">Bienvenido</div>
-        <div class="nombre">{{ usuario.nombre }}</div>
-        <div class="cliente-desde">Cliente Allianz desde {{ usuario.fechaCliente }}</div>
-        <div class="actualizado">Actualizado al: {{ fechaActualizacion }}</div>
-      </div>
-    </section>
-  
-    <!-- Polizas -->
-    <section class="polizas">
-      <h2>📄 Mis Pólizas ({{ polizas.length }})</h2>
-      
-      <div class="grafica-categorias">
-        <div *ngFor="let cat of categorias" class="categoria">
-          <div class="icon">{{ cat.icon }}</div>
-          <div class="nombre">{{ cat.nombre }}</div>
-        </div>
-      </div>
-  
-      <div class="lista-polizas">
-        <div *ngFor="let poliza of polizas" class="poliza-card">
-          <div class="clave">{{ poliza.clave }}</div>
-          <div class="saldo">SALDO MONEDA LOCAL</div>
-          <div class="monto">{{ poliza.saldo }}</div>
-        </div>
-      </div>
-    </section>
+<!-- Header -->
+<app-header></app-header>
+
+<!-- Bienvenida -->
+<div class="flex items-center gap-4 p-4 bg-gradient-to-r from-blue-200 to-white">
+  <img src="assets/avatar.png" class="w-20 h-20 rounded-full" />
+  <div>
+    <p class="text-gray-600">Bienvenido</p>
+    <p class="text-xl font-bold">MAURICIO HUESCA RODRIGUEZ</p>
+    <p class="text-sm text-gray-500">Cliente allianz desde 01/09/2014</p>
   </div>
-  
+</div>
+
+<!-- Mis Pólizas -->
+<div class="p-4">
+  <h2 class="text-xl font-semibold flex items-center gap-2">
+    <i class="fas fa-file-alt text-gray-600"></i> Mis Pólizas ({{ filteredPolizas.length }})
+  </h2>
+
+  <div class="flex flex-col lg:flex-row mt-4 gap-6">
+    <!-- Dona de productos -->
+    <div class="w-full lg:w-1/3">
+      <ngx-charts-pie-chart
+        [results]="dataProductos"
+        [view]="[300, 300]"
+        [doughnut]="true"
+        [legend]="true"
+        (select)="filtrarPolizas($event.name)">
+      </ngx-charts-pie-chart>
+    </div>
+
+    <!-- Tarjetas de pólizas -->
+    <div class="flex-1 grid md:grid-cols-3 gap-4">
+      <div *ngFor="let poliza of filteredPolizas" class="p-4 rounded shadow bg-blue-100">
+        <p class="font-bold">{{ poliza.codigo }}</p>
+        <p class="text-sm text-gray-700">{{ poliza.descripcion }}</p>
+        <p class="text-sm mt-2">{{ poliza.saldo ? 'SALDO MONEDA LOCAL $' + poliza.saldo : 'Saldo No disponible' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
