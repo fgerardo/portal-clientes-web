@@ -15,24 +15,72 @@
     </div>
   </div>
 
-  <!-- Toolbar -->
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav-content>
       <mat-toolbar class="menu-toolbar">
         <div class="menu-links">
-          <a class="menu-item"><i class="fa fa-exclamation-triangle"></i><span>Siniestro</span></a>
-          <a class="menu-item"><i class="fa fa-usd"></i><span>Pagos</span></a>
-          <a class="menu-item"><i class="fa fa-list-alt"></i><span>Resumen</span></a>
-          <a class="menu-item"><i class="fa fa-users"></i><span>Pensiones</span></a>
-          <a class="menu-item"><i class="fa fa-calendar-check-o"></i><span>Vigencias</span></a>
-          <a class="menu-item"><i class="fa fa-files-o"></i><span>Trámites</span></a>
-          <a class="menu-item"><i class="fa fa-file-pdf-o"></i><span>Constancias</span></a>
-          <a class="menu-item"><i class="fa fa-inbox"></i><span>Quejas</span></a>
-          <a class="menu-item salir"><i class="fa fa-sign-out"></i><span>Salir</span></a>
+
+          <!-- Siniestro con submenú -->
+          <button mat-button [matMenuTriggerFor]="menuSiniestro" class="menu-item">
+            <i class="fa fa-exclamation-triangle"></i> <span>Siniestro</span>
+          </button>
+          <mat-menu #menuSiniestro="matMenu">
+            <button mat-menu-item>
+              <i class="fa fa-check-circle"></i> <span>Estatus</span>
+            </button>
+            <button mat-menu-item>
+              <i class="fa fa-edit"></i> <span>Reportar Siniestro</span>
+            </button>
+          </mat-menu>
+
+          <!-- Pagos con submenú -->
+          <button mat-button [matMenuTriggerFor]="menuPagos" class="menu-item">
+            <i class="fa fa-usd"></i> <span>Pagos</span>
+          </button>
+          <mat-menu #menuPagos="matMenu">
+            <button mat-menu-item>
+              <i class="fa fa-money"></i> <span>Pagar ahora</span>
+            </button>
+            <button mat-menu-item>
+              <i class="fa fa-exchange"></i> <span>Cambiar conducto de cobro</span>
+            </button>
+            <button mat-menu-item>
+              <i class="fa fa-calendar-plus-o"></i> <span>Programar Pagos</span>
+            </button>
+            <button mat-menu-item>
+              <i class="fa fa-calendar"></i> <span>Próximos Pagos</span>
+            </button>
+          </mat-menu>
+
+          <!-- Otros sin submenú -->
+          <button mat-button class="menu-item">
+            <i class="fa fa-list-alt"></i> <span>Resumen</span>
+          </button>
+          <button mat-button class="menu-item">
+            <i class="fa fa-users"></i> <span>Pensiones</span>
+          </button>
+          <button mat-button class="menu-item">
+            <i class="fa fa-calendar-check-o"></i> <span>Vigencias</span>
+          </button>
+          <button mat-button class="menu-item">
+            <i class="fa fa-files-o"></i> <span>Trámites</span>
+          </button>
+          <button mat-button class="menu-item">
+            <i class="fa fa-file-pdf-o"></i> <span>Constancias</span>
+          </button>
+          <button mat-button class="menu-item">
+            <i class="fa fa-inbox"></i> <span>Quejas</span>
+          </button>
+          <button mat-button class="menu-item salir">
+            <i class="fa fa-sign-out"></i> <span>Salir</span>
+          </button>
+
         </div>
       </mat-toolbar>
     </mat-sidenav-content>
   </mat-sidenav-container>
+
+
 
   <!-- Info -->
   <div class="info-shower">
@@ -51,6 +99,6 @@
       </div>
     </div>
   </div>
-  
+
   <app-polizas></app-polizas>
 </header>
