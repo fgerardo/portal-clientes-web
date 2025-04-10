@@ -1,0 +1,161 @@
+/*DONA*/
+.donut-wrapper {
+    position: relative;
+    width: 300px;
+    margin: 0 5%;
+}
+
+/*FIN DONA*/
+
+/* MEDIA */
+@media (max-width: 768px) {
+    .contenedor-principal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .poliza-card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .polizas-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 1rem;
+    /* flex-wrap: wrap; */
+}
+
+.dona-container {
+    /* width: 400px; */
+    min-width: 250px;
+}
+
+.polizas-wrapper {
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.polizas-wrapper {
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* En pantallas grandes: 1 columna */
+@media (min-width: 1024px) {
+    .polizas-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* .poliza-card {
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #004b8d;
+    color: white;
+} */
+
+.poliza-card {
+    flex: 1 1 220px;
+    max-width: 300px;
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #004b8d;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* .poliza-card {
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #004b8d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 120px;
+} */
+
+.poliza-card:hover {
+    transform: translateY(-4px);
+}
+
+.poliza-codigo {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    width: 130px;
+}
+
+.poliza-producto {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.poliza-saldo {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.sin-polizas {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #888;
+}
+
+.poliza-codigo,
+.poliza-producto,
+.poliza-saldo {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.polizas-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.polizas-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.btn-limpiar {
+    background-color: #ccc;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+#donutSvg path.hoverable {
+    transition: transform 0.3s ease;
+    transform-origin: 50% 50%;
+    cursor: pointer;
+}
+
+#donutSvg path.hoverable:hover {
+    transform: scale(1.05);
+}
+
+/* Al estar seleccionado */
+#donutSvg path.activo {
+    stroke: #000;
+    stroke-width: 3;
+    transform: scale(1.1);
+}
