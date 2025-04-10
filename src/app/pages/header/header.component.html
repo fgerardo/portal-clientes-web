@@ -51,24 +51,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Donut -->
-  <div class="donut-wrapper">
-    <h1>Mis Pólizas</h1>
-    <svg height="100%" width="100%" viewBox="0 0 400 400" id="donutSvg">
-      <!-- 1. Sectores de colores -->
-      <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)"
-        [attr.fill]="getColorForFamily(s.familia)" [attr.class]="s.class">
-      </path>
-
-      <!-- 2. Paths transparentes para clics -->
-      <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)" fill="transparent"
-        (click)="filtroDisponible(s.familia) && seleccionarProducto(s.familia)">
-      </path>
-
-      <!-- 3. Imagen encima (solo decorativa) -->
-      <image href="/assets/dona-seis-2021-01.png" x="0" y="0" height="400px" width="400px" />
-    </svg>
-  </div>
-
+  
+  <app-polizas></app-polizas>
 </header>

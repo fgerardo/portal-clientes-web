@@ -25,6 +25,7 @@ import { CrearCuentaComponent } from './pages/crear-cuenta/crear-cuenta.componen
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { PolizasComponent } from './pages/polizas/polizas.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { MatListModule } from '@angular/material/list';
     RecuperarContrasenaComponent,
     MensajeModalComponent,
     HeaderComponent,
+    PolizasComponent,
   ],
   imports: [
     BrowserModule,
