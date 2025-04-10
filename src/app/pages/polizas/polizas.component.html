@@ -2,11 +2,13 @@
     <h2 class="text-xl font-semibold flex items-center gap-2">
         <i class="fas fa-file-alt text-gray-600"></i>
         Mis Pólizas ({{ polizasFiltradas.length }})
-        <!-- Botón para limpiar el filtro -->
-        <button *ngIf="selectedFamilia" class="text-red-500 text-lg" (click)="limpiarFiltro()">
-            <i class="fas fa-times"></i> Limpiar Filtro
-        </button>
     </h2>
+
+    <div *ngIf="selectedFamilia" class="flex justify-end">
+        <button *ngIf="selectedFamilia" class="btn-limpiar" (click)="limpiarFiltro()">
+            <i class="fas fa-square text-red-500 mr-1"></i> Limpiar Filtro
+        </button>
+    </div>
     <div class="contenedor-principal">
         <div class="dona-container">
             <svg height="100%" width="100%" viewBox="0 0 400 400" id="donutSvg">
