@@ -115,11 +115,13 @@
     }
   }
 }
+
 /* Título de sección */
 h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937; /* gray-800 */
+  color: #1f2937;
+  /* gray-800 */
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -140,8 +142,111 @@ h2 {
   transform: scale(1.05);
 }
 
-.bg-1 { background-color: #00adee; }     /* celeste Allianz */
-.bg-2 { background-color: #0071b3; }
-.bg-3 { background-color: #505ba1; }     /* azul violeta */
-.bg-4 { background-color: #003764; }     /* azul oscuro */
+.bg-1 {
+  background-color: #00adee;
+}
 
+/* celeste Allianz */
+.bg-2 {
+  background-color: #0071b3;
+}
+
+.bg-3 {
+  background-color: #505ba1;
+}
+
+/* azul violeta */
+.bg-4 {
+  background-color: #003764;
+}
+
+/* azul oscuro */
+
+.polizas-lista {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.poliza-tarjeta {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.poliza-tarjeta:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.poliza-codigo {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.poliza-desc {
+  font-size: 14px;
+  color: #666;
+}
+
+.poliza-saldo {
+  font-size: 14px;
+  color: #00796b;
+  margin-top: 4px;
+}
+
+/*DONA*/
+.donut-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 5%;
+}
+
+.donut-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.donut-label .title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.donut-label .subtitle {
+  color: gray;
+  font-size: 0.9rem;
+}
+
+polygon {
+  cursor: pointer;
+  transition: fill 0.3s;
+}
+
+polygon {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover sobre polígonos visibles */
+polygon:hover {
+  filter: brightness(1.2);
+  transform: scale(1.05);
+  transform-origin: 150px 150px;
+  /* centro del donut */
+}
+
+/* Clase para cuando un filtro es seleccionado (opcional si se quiere destacar el seleccionado) */
+polygon.selected {
+  stroke: #000;
+  stroke-width: 2;
+}
+
+/*FIN DONA*/

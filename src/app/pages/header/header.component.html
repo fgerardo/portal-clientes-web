@@ -54,21 +54,41 @@
 
   <!-- Donut -->
   <div class="donut-wrapper">
-    <h1>Mis Pólizas</h1>
-    <svg height="100%" width="100%" viewBox="0 0 400 400" id="donutSvg">
-      <!-- 1. Sectores de colores -->
-      <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)"
-        [attr.fill]="getColorForFamily(s.familia)" [attr.class]="s.class">
-      </path>
+    <h2 class="text-xl font-semibold flex items-center gap-2">
+      <i class="fas fa-file-alt text-gray-600"></i>
+      Mis Pólizas ({{ polizasFiltradas.length }})
+    </h2>
+    <div class="contenedor-principal">
+      <div class="dona-container">
+      <svg height="100%" width="100%" viewBox="0 0 400 400" id="donutSvg">
+        <!-- 1. Sectores de colores -->
+        <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)"
+          [attr.fill]="getColorForFamily(s.familia)" [attr.class]="s.class">
+        </path>
+  
+        <!-- 2. Paths transparentes para clics -->
+        <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)" fill="transparent"
+          (click)="filtroDisponible(s.familia) && seleccionarProducto(s.familia)">
+        </path>
+  
+        <!-- 3. Imagen encima (solo decorativa) -->
+        <image href="/assets/dona-seis-2021-01.png" x="0" y="0" height="400px" width="400px" />
+      </svg>
+    </div>
+  
+      <div class="polizas-container">
+        <div *ngFor="let poliza of polizasFiltradas" class="poliza-card">
+          <div class="poliza-codigo">{{ poliza.codigo }}</div>
+          <div class="poliza-producto">{{ poliza.producto }}</div>
+          <div class="poliza-saldo">
+            {{ poliza.saldo | currency:'USD':'symbol-narrow':'1.2-2' }}
+          </div>
+        </div>
+      </div>
 
-      <!-- 2. Paths transparentes para clics -->
-      <path *ngFor="let s of sectores" [attr.d]="generarPath(s.angInicio, s.angFin)" fill="transparent"
-        (click)="filtroDisponible(s.familia) && seleccionarProducto(s.familia)">
-      </path>
 
-      <!-- 3. Imagen encima (solo decorativa) -->
-      <image href="/assets/dona-seis-2021-01.png" x="0" y="0" height="400px" width="400px" />
-    </svg>
+    </div>
   </div>
+
 
 </header>
