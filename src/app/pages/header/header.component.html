@@ -25,7 +25,7 @@
             <i class="fa fa-exclamation-triangle"></i> <span>Siniestro</span>
           </button>
           <mat-menu #menuSiniestro="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="consultarEstatusSiniestro()">
               <i class="fa fa-check-circle"></i> <span>Estatus</span>
             </button>
             <button mat-menu-item>

@@ -44,6 +44,7 @@ export class ImagenesModalComponent {
         .subscribe(
           (response) => {
             if (response.response) { // Si la respuesta es true
+              this.loginService.setUsuario(this.username);
               this.router.navigate(['/home']); // Redirigir al Home
             } else {
               this.errorService.setErrorMessage('La imagen seleccionada no es la correcta.');  // Set error message in the service

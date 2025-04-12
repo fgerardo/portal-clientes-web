@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/enviroments/environment.development';
 
 @Injectable({
@@ -76,5 +76,28 @@ export class AuthService {
     const seconds = String(date.getSeconds()).padStart(2, '0');
 
     return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+  private usuarioSource = new BehaviorSubject<string>(''); // Inicializa el valor de usuario como vacío.
+  usuario$ = this.usuarioSource.asObservable(); // Observable para suscribirse a los cambios.
+
+  // Método para actualizar el valor de usuario
+  setUsuario(usuario: string) {
+    this.usuarioSource.next(usuario);
+  }
+
+  // Método para obtener el valor actual de usuario
+  getUsuario() {
+    return this.usuarioSource.value;
+  }
+
+  consultarEstatusSiniestros(usuario: string): Observable<any> {
+    const url = environment.url.consultarEstatus;
+
+    const body = {
+      usuario: usuario
+    };
+
+    return this.http.post<any>(url, body);
   }
 }

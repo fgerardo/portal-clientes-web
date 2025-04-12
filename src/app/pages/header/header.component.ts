@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface Poliza {
   codigo: string;
@@ -13,81 +14,33 @@ interface Poliza {
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Input() userName: string = '';
+  @Input() usuario: string = '';
   @Input() fechaIngreso: string = '';
   @Output() productoSeleccionado = new EventEmitter<string>();
 
+  constructor(private userService: AuthService) { }
+
   hoy = new Date().toLocaleDateString('es-MX');
 
-  // 🔸 Lista completa de pólizas
-  polizas: Poliza[] = [
-    { codigo: 'OPPT-10889', producto: 'Ahorro', saldo: 645525.04, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'OPPT-11016', producto: 'Ahorro', saldo: 0, descripcion: 'SALDO' },
-    { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' }
-  ];
-
-  selectedProducto: string = '';
-  polizasFiltradas: Poliza[] = this.polizas;
-
-  dataFamilias: any = {
-    ahorro: true,
-    salud: true,
-    hogar: false,
-    proteccion: false,
-    inversion: true,
-    auto: true,
-  };
-
-  sectores = [
-    { familia: 'ahorro', angInicio: 0, angFin: 60, class: 'p1' },
-    { familia: 'salud', angInicio: 60, angFin: 120, class: 'p2' },
-    { familia: 'hogar', angInicio: 120, angFin: 180, class: 'p3' },
-    { familia: 'proteccion', angInicio: 180, angFin: 240, class: 'p4' },
-    { familia: 'inversion', angInicio: 240, angFin: 300, class: 'p5' },
-    { familia: 'auto', angInicio: 300, angFin: 360, class: 'p6' }
-  ];
-
-  getColorForFamily(familia: string): string {
-    const colores: Record<string, string> = {
-      ahorro: '#01589f',
-      salud: '#00b2d4',
-      hogar: '#bbc2b2',
-      proteccion: '#cce7e8',
-      inversion: '#dbdee3',
-      auto: '#94b6df'
-    };
-    return this.dataFamilias[familia] ? colores[familia] : '#e2e2e2';
+  ngOnInit() {
+    // Suscribirse a los cambios de usuario en el servicio
+    this.userService.usuario$.subscribe(usuario => {
+      this.usuario = usuario; // Actualiza el valor de userName cuando cambia.
+    });
+    console.log("Usuario ", this.usuario);
   }
 
-  filtroDisponible(familia: string): boolean {
-    return this.dataFamilias[familia];
-  }
-
-  seleccionarProducto(familia: string) {
-    this.selectedProducto = familia.charAt(0).toUpperCase() + familia.slice(1); // Capitaliza
-    this.polizasFiltradas = this.polizas.filter(p => p.producto.toLowerCase() === familia.toLowerCase());
-  }
-
-  generarPath(angInicio: number, angFin: number): string {
-    const cx = 200, cy = 200;
-    const rOuter = 180, rInner = 100;
-
-    const rad = (deg: number) => (deg - 90) * Math.PI / 180;
-
-    const x1 = cx + rOuter * Math.cos(rad(angInicio));
-    const y1 = cy + rOuter * Math.sin(rad(angInicio));
-    const x2 = cx + rOuter * Math.cos(rad(angFin));
-    const y2 = cy + rOuter * Math.sin(rad(angFin));
-
-    const x3 = cx + rInner * Math.cos(rad(angFin));
-    const y3 = cy + rInner * Math.sin(rad(angFin));
-    const x4 = cx + rInner * Math.cos(rad(angInicio));
-    const y4 = cy + rInner * Math.sin(rad(angInicio));
-
-    const largeArcFlag = angFin - angInicio <= 180 ? 0 : 1;
-
-    return `M ${x1},${y1} A ${rOuter},${rOuter} 0 ${largeArcFlag} 1 ${x2},${y2} L ${x3},${y3} A ${rInner},${rInner} 0 ${largeArcFlag} 0 ${x4},${y4} Z`;
+  consultarEstatusSiniestro() {
+      this.userService
+        .consultarEstatusSiniestros(this.usuario) // Send the username and selected image ID
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log('Error --> ',error);
+          }
+        );
+    
   }
 }

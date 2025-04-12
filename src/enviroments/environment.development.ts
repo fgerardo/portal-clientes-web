@@ -10,6 +10,7 @@ export const environment = {
   url: {
     loginService: URL_BASE + 'v1/login',
     recuperContrasena: URL_BASE + 'v1/recuperar/contrasenia',
+    consultarEstatus: URL_BASE + 'v1/consultar/estatus',
     //Servicios Intermediario Service para la consulta directas a BD
     procesarImagen: URL_BASE_INTERMEDIARIO + 'portalClientes/v1/procesarImagen',
     verificarImagenUsuario: URL_BASE_INTERMEDIARIO + 'portalClientes/v1/verificarImagen'
