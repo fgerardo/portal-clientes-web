@@ -1,0 +1,33 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 class="modal-title">Vigencias por póliza</h2>
+    <button mat-icon-button (click)="cerrar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <ng-container *ngIf="vigencias.length; else noPolizas">
+      <table class="poliza-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Desde</th>
+            <th>Hasta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of vigencias">
+            <td>{{ p.producto }}</td>
+            <td>{{ p.fechaDesde }}</td>
+            <td>{{ p.fechaHasta }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+    <ng-template #noPolizas>
+      <p style="padding: 16px;">No hay pólizas para mostrar.</p>
+    </ng-template>
+  </div>
+</div>

@@ -59,10 +59,10 @@
           <button mat-button class="menu-item">
             <i class="fa fa-users"></i> <span>Pensiones</span>
           </button>
-          <button mat-button class="menu-item">
+          <button mat-button class="menu-item" (click)="abrirModalVigencias()">
             <i class="fa fa-calendar-check-o"></i> <span>Vigencias</span>
           </button>
-          <button mat-button class="menu-item">
+          <button mat-button class="menu-item" (click)="abrirModal()">
             <i class="fa fa-files-o"></i> <span>Trámites</span>
           </button>
           <button mat-button class="menu-item">
@@ -91,10 +91,10 @@
       <div class="user-image"></div>
       <div class="user-info">
         <p class="user-p">Bienvenido</p>
-        <p class="user-name">MAURICIO HUESCA RODRIGUEZ</p>
+        <p class="user-name">{{nombreUsuario}}</p>
         <div class="info-extra">
-          <p class="user-p">Cliente Allianz desde 01/09/2014</p>
-          <p class="user-p">Actualizado al: <strong>9/4/2025</strong></p>
+          <p class="user-p">Cliente Allianz desde {{fechaClienteDesde}}</p>
+          <p class="user-p">Actualizado al: <strong>{{fechaActualizada}}</strong></p>
         </div>
       </div>
     </div>

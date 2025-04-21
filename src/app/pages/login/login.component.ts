@@ -93,7 +93,14 @@ export class LoginComponent {
   }
 
   manejarRespuesta(responseData: any) {
-    const estatus = responseData.response.estatus;
+    const response = responseData?.response;
+
+    if (!response) {
+      this.errorMessage = 'Respuesta inválida del servidor.';
+      return;
+    }
+
+    const estatus = response.estatus;
 
     switch (estatus) {
       case 1:
@@ -121,9 +128,9 @@ export class LoginComponent {
 
         const flujo = responseData.response.flujo;
         const usuario = this.username;
-
+        const usuarioAutenticado = response.respuesta;
         this.dialog.open(ImagenesModalComponent, {
-          data: { imagenes: shuffledImages, flujo, usuario },
+          data: { imagenes: shuffledImages, flujo, usuario, usuarioAutenticado },
           maxWidth: '90vw',   // límite de ancho basado en el viewport
           width: 'auto'       // permite que el contenido defina el ancho
         });

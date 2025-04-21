@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorService } from 'src/app/services/error.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-imagenes-modal',
@@ -15,16 +16,19 @@ export class ImagenesModalComponent {
   flujo: string;
   mostrarModalConfirmacion = false;
   errorMessage: string = '';
+  usuarioAutenticado: string = '';
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { imagenes: { url: string, idImagen: string }[], flujo: string, usuario: string },
+    @Inject(MAT_DIALOG_DATA) public data: { imagenes: { url: string, idImagen: string }[], flujo: string, usuario: string, usuarioAutenticado: string },
     public dialogRef: MatDialogRef<ImagenesModalComponent>,
     private router: Router,
     private loginService: AuthService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private userDataService: UserDataService
   ) {
     this.username = data.usuario; // Receive username from parent
     this.flujo = data.flujo; // Receive flujo from parent
+    this.usuarioAutenticado = data.usuarioAutenticado;
   }
 
   cancelar(): void {
@@ -44,8 +48,9 @@ export class ImagenesModalComponent {
         .subscribe(
           (response) => {
             if (response.response) { // Si la respuesta es true
+              this.accesoPortal();
               this.loginService.setUsuario(this.username);
-              this.router.navigate(['/home']); // Redirigir al Home
+              // this.router.navigate(['/home']); // Redirigir al Home
             } else {
               this.errorService.setErrorMessage('La imagen seleccionada no es la correcta.');  // Set error message in the service
             }
@@ -96,5 +101,37 @@ export class ImagenesModalComponent {
         }
       );
     this.dialogRef.close(); // Cierra el modal principal después de guarda
+  }
+
+  accesoPortal() {
+    this.loginService.accesoPortal(this.usuarioAutenticado, this.username).subscribe(
+      (response) => {
+        console.log(response);
+        const rol = response.response.rol;
+        const encrypt = response.response.encrypt;
+        if (rol.toUpperCase() === 'C') {
+          console.log("entro el rol de cliente ", rol);
+          this.headerPortal(encrypt)
+        } else {
+          console.log("entro el rol de Agente ", rol);
+        }
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  headerPortal(parametro: string) {
+    this.loginService.headerPortal(parametro).subscribe(
+      (response) => {
+        console.log(response);
+         // Redirigir a /home con datos en el state
+      this.router.navigate(['/home'], {
+        state: { userData: response.response } // 👈 Pasamos los datos aquí
+      });
+      }, (error) => {
+        console.log(error);
+      }
+    )
   }
 }

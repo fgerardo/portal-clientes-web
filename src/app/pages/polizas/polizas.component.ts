@@ -20,6 +20,7 @@ export class PolizasComponent {
 
   hoy = new Date().toLocaleDateString('es-MX');
   selectedFamilia: string | null = null;
+  mostrarAlerta: boolean = false;
 
   // 🔸 Lista completa de pólizas
   polizas: Poliza[] = [
@@ -37,29 +38,31 @@ export class PolizasComponent {
   dataFamilias: any = {
     ahorro: true,
     salud: true,
-    hogar: false,
-    proteccion: false,
+    daños: true,
+    proteccion: true,
     inversion: true,
     auto: true,
   };
 
+
   sectores = [
-    { familia: 'ahorro', angInicio: 0, angFin: 60, class: 'p1' },
-    { familia: 'salud', angInicio: 60, angFin: 120, class: 'p2' },
-    { familia: 'hogar', angInicio: 120, angFin: 180, class: 'p3' },
-    { familia: 'proteccion', angInicio: 180, angFin: 240, class: 'p4' },
-    { familia: 'inversion', angInicio: 240, angFin: 300, class: 'p5' },
-    { familia: 'auto', angInicio: 300, angFin: 360, class: 'p6' }
+    { familia: 'salud', angInicio: 0, angFin: 60, class: 'p1' },     // Celeste
+    { familia: 'daños', angInicio: 60, angFin: 120, class: 'p2' },       // Verde
+    { familia: 'proteccion', angInicio: 120, angFin: 180, class: 'p3' },
+    { familia: 'inversion', angInicio: 180, angFin: 240, class: 'p4' },
+    { familia: 'auto', angInicio: 240, angFin: 300, class: 'p5' },
+    { familia: 'ahorro', angInicio: 300, angFin: 360, class: 'p6' },   // Azul fuerte
+
   ];
 
   getColorForFamily(familia: string): string {
     const colores: Record<string, string> = {
-      ahorro: '#01589f',
-      salud: '#00b2d4',
-      hogar: '#bbc2b2',
-      proteccion: '#cce7e8',
-      inversion: '#dbdee3',
-      auto: '#94b6df'
+      ahorro: '#064887',
+      salud: '#3bbded',
+      daños: '#07672f',
+      proteccion: '#d1ebf0',
+      inversion: '#d1d9ea',
+      auto: '#87a4d9'
     };
     return this.dataFamilias[familia] ? colores[familia] : '#e2e2e2';
   }
@@ -75,14 +78,33 @@ export class PolizasComponent {
   }
 
   seleccionarProducto(familia: string) {
-    console.log('Seleccionado:', familia);
     this.selectedFamilia = familia;
-    // Filtrar las pólizas según la familia seleccionada
-    this.polizasFiltradas = this.filtrarPolizas(familia);
 
-    this.selectedProducto = familia.charAt(0).toUpperCase() + familia.slice(1);
-    this.polizasFiltradas = this.polizas.filter(p => p.producto.toLowerCase() === familia.toLowerCase());
+    const filtradas = this.filtrarPolizas(familia);
+    this.polizasFiltradas = filtradas;
+
+    if (filtradas.length === 0) {
+      this.mostrarAlerta = true;
+    } else {
+      this.selectedProducto = familia.charAt(0).toUpperCase() + familia.slice(1);
+    }
   }
+
+  cerrarAlerta() {
+    this.mostrarAlerta = false;
+    this.selectedFamilia = null;
+    this.limpiarFiltro();
+  }
+
+  // seleccionarProducto(familia: string) {
+  //   console.log('Seleccionado:', familia);
+  //   this.selectedFamilia = familia;
+  //   // Filtrar las pólizas según la familia seleccionada
+  //   this.polizasFiltradas = this.filtrarPolizas(familia);
+
+  //   this.selectedProducto = familia.charAt(0).toUpperCase() + familia.slice(1);
+  //   this.polizasFiltradas = this.polizas.filter(p => p.producto.toLowerCase() === familia.toLowerCase());
+  // }
 
   // Función para filtrar las pólizas (ejemplo)
   filtrarPolizas(familia: string) {

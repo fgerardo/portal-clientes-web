@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 const URL_BASE =
   'http://localhost:8092/portal-clientes-services/';
-const URL_BASE_INTERMEDIARIO = 'http://localhost:8089/intermediario-service/'
+// const URL_BASE_INTERMEDIARIO = 'http://localhost:8089/intermediario-service/'
+const URL_BASE_INTERMEDIARIO = 'https://portalb.allianz.com.mx/intermediario-service/'
 const URL_BASE_INCODE = 'https://portalb.allianz.com.mx/'
 
 export const environment = {
@@ -14,7 +15,9 @@ export const environment = {
     consultarEstatus: URL_BASE + 'v1/consultar/estatus',
     //Servicios Intermediario Service para la consulta directas a BD
     procesarImagen: URL_BASE_INTERMEDIARIO + 'portalClientes/v1/procesarImagen',
-    verificarImagenUsuario: URL_BASE_INTERMEDIARIO + 'portalClientes/v1/verificarImagen'
+    verificarImagenUsuario: URL_BASE_INTERMEDIARIO + 'portalClientes/v1/verificarImagen',
+    accesoPortal: URL_BASE + 'v1/acceso/portal',
+    headerPolizas: URL_BASE + 'v1/consultar/header'
   },
   urlIncode: {
     urlLigaIncode: URL_BASE_INCODE + 'liga-incode/notificaciones-incode?idSac=',

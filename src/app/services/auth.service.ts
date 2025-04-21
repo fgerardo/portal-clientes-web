@@ -57,15 +57,6 @@ export class AuthService {
 
     return this.http.post<any>(url, body);
   }
-
-  logout(): void {
-    this.isAuthenticated = false;
-  }
-
-  isLoggedIn(): boolean {
-    return this.isAuthenticated;
-  }
-
   // Function to format the date as yyyy/MM/dd HH:mm:ss
   private formatDate(date: Date): string {
     const year = date.getFullYear();
@@ -100,4 +91,35 @@ export class AuthService {
 
     return this.http.post<any>(url, body);
   }
+
+  accesoPortal(usuarioAutenticado: string, usuario: string): Observable<any> {
+    const url = environment.url.accesoPortal;
+
+    const body = {
+      mensajeAutenticacion: usuarioAutenticado,
+      usuario: usuario
+    };
+
+    return this.http.post<any>(url, body);
+  }
+
+  headerPortal(parametro: string): Observable<any> {
+    const url = environment.url.headerPolizas;
+
+    const body = {
+      parametro: parametro
+    };
+
+    return this.http.post<any>(url, body);
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('auth') === 'true';
+  }
+  
+  logout(): void {
+    localStorage.removeItem('auth');
+    this.usuarioSource.next('');
+  }
+  
 }

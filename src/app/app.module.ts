@@ -27,6 +27,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { PolizasComponent } from './pages/polizas/polizas.component';
+import { TramitesModalComponent } from './pages/tramites-modal/tramites-modal.component';
+import { VigenciasModalComponent } from './pages/vigencias-modal/vigencias-modal.component';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { PolizasComponent } from './pages/polizas/polizas.component';
     MensajeModalComponent,
     HeaderComponent,
     PolizasComponent,
+    TramitesModalComponent,
+    VigenciasModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 interface Poliza {
   codigo: string;
@@ -11,6 +13,16 @@ interface Poliza {
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  dataUser: any;
+
+  constructor(private router: Router, private userDataService: UserDataService) {
+    const navigation = this.router.getCurrentNavigation();
+    this.dataUser = navigation?.extras?.state?.['userData'] || null;
+    console.log("🚀 Datos en HomeComponent:", this.dataUser);
+
+    this.someMethodAfterGettingData(this.dataUser);
+  
+  }
  
   // 🔸 Lista completa de pólizas
   polizas: Poliza[] = [
@@ -88,5 +100,11 @@ export class HomeComponent {
       A ${rInner},${rInner} 0 ${largeArcFlag} 0 ${x4},${y4}
       Z
     `;
+  }
+
+
+  someMethodAfterGettingData(response: any) {
+    // Guarda los datos del usuario en el servicio
+    this.userDataService.setUserData(response);
   }
 }

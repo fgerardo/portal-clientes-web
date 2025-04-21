@@ -1,0 +1,55 @@
+<div class="modal-container">
+    <div class="modal-header">
+        <h2 class="modal-title">Trámites</h2>
+        <button mat-icon-button (click)="dialogRef.close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <form [formGroup]="form" class="modal-content">
+        <mat-form-field class="form-field">
+            <mat-label>Seleccione una Póliza</mat-label>
+            <mat-select formControlName="poliza">
+                <mat-option [value]="null">Seleccione una opción</mat-option>
+                <mat-option *ngFor="let poliza of polizas" [value]="poliza">
+                    {{ poliza.familiaPoliza }} - {{ poliza.numeroPoliza }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('poliza')?.hasError('required')">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
+            <mat-label>Seleccione un Trámite</mat-label>
+            <mat-select formControlName="tramite">
+                <mat-option [value]="null">Seleccione una opción</mat-option>
+                <mat-option *ngFor="let tramite of tramitesFiltrados" [value]="tramite">
+                    {{ tramite.tramite }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('tramite')?.hasError('required')">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+
+        <ng-container *ngIf="mostrarObservacionesYBoton()">
+            <mat-form-field class="form-field">
+              <mat-label>Observaciones</mat-label>
+              <textarea
+                matInput
+                formControlName="observaciones"
+                rows="3"
+              ></textarea>
+              <mat-error *ngIf="form.get('observaciones')?.hasError('required')">
+                Este campo es requerido
+              </mat-error>
+            </mat-form-field>
+          
+            <div style="text-align: right">
+              <button mat-stroked-button color="primary" (click)="enviar()">Enviar</button>
+            </div>
+          </ng-container>
+          
+    </form>
+</div>

@@ -1,0 +1,35 @@
+:host ::ng-deep .modal-container {
+    width: 100%;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    background: white;
+  }
+  
+  :host ::ng-deep .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #006192;
+    color: white;
+    padding: 10px 15px;
+  }
+  
+  :host ::ng-deep .modal-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  :host ::ng-deep .modal-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  :host ::ng-deep .form-field {
+    width: 100%;
+  }
+  

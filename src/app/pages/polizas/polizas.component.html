@@ -37,3 +37,10 @@
         </div>
     </div>
 </div>
+
+<div class="modal-alerta" *ngIf="mostrarAlerta">
+    <div class="modal-alerta-contenido">
+      <p>No cuentas con pólizas asociadas a esta categoría.</p>
+      <button (click)="cerrarAlerta()">Aceptar</button>
+    </div>
+  </div>
