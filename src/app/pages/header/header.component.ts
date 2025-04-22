@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { TramitesModalComponent } from '../tramites-modal/tramites-modal.component';
 import { VigenciasModalComponent } from '../vigencias-modal/vigencias-modal.component';
+import { environment } from 'src/enviroments/environment.development';
+import { ProximosPagosModalComponent } from '../proximos-pagos-modal/proximos-pagos-modal.component';
 
 interface Poliza {
   codigo: string;
@@ -26,6 +28,7 @@ export class HeaderComponent {
   nombreUsuario: string = '';
   fechaClienteDesde: string = '';
   fechaActualizada: string = '';
+  isClientePension: boolean = false
 
   constructor(private userService: AuthService, private router: Router, private userDataService: UserDataService, private dialog: MatDialog) {
     // 👇 Recuperamos el state
@@ -46,6 +49,7 @@ export class HeaderComponent {
       this.nombreUsuario = this.userDataService.getUserData().generales.nombreCliente || '';
       this.fechaClienteDesde = this.userDataService.getUserData().generales.clienteDesde || '';
       this.fechaActualizada = this.userDataService.getUserData().generales.fechaUltimaActualizacion || this.hoy;
+      this.isClientePension = this.userDataService.getUserData().clientePensiones.pension;
     }
   }
 
@@ -95,6 +99,23 @@ export class HeaderComponent {
       },
       width: '550px'
     });
+  }
+
+  abrirModalProximosPagos(){
+    const proximosPagos = this.userDataService.getUserData().proximosPagos;
+
+    this.dialog.open(ProximosPagosModalComponent, {
+      data: {
+        proximosPagos
+      },
+      width: '550px'
+    });
+  }
+
+  abrirPaginaPensiones() {
+    const idclie = this.userDataService.getUserData().clientePensiones.idclie;
+    const urlPensiones = environment.web.portalFindAdvance + idclie;
+    window.open(urlPensiones, '_blank');
   }
 
 }

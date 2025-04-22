@@ -1,0 +1,61 @@
+.modal-container {
+    width: 100%;
+    max-width: 750px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    background: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #006192 ;
+    color: white;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-weight: bold;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .modal-title {
+    margin: 0;
+  }
+  
+  .modal-content {
+    padding: 0;
+  }
+  
+  .poliza-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .poliza-table th, .poliza-table td {
+    padding: 14px 20px;
+    text-align: left;
+  }
+  
+  .poliza-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .poliza-table tr:nth-child(even) {
+    background-color: #f9fbfd;
+  }
+  
+  .poliza-table tr:not(:last-child) td {
+    border-bottom: 1px solid #e6e6e6;
+  }
+  
+  .poliza-table tr:hover {
+    background-color: #edf6fb;
+  }
+  

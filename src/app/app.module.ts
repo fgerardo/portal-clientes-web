@@ -29,6 +29,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { PolizasComponent } from './pages/polizas/polizas.component';
 import { TramitesModalComponent } from './pages/tramites-modal/tramites-modal.component';
 import { VigenciasModalComponent } from './pages/vigencias-modal/vigencias-modal.component';
+import { ProximosPagosModalComponent } from './pages/proximos-pagos-modal/proximos-pagos-modal.component';
+import { ResumenSaldosModalComponent } from './pages/resumen-saldos-modal/resumen-saldos-modal.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { VigenciasModalComponent } from './pages/vigencias-modal/vigencias-modal
     PolizasComponent,
     TramitesModalComponent,
     VigenciasModalComponent,
+    ProximosPagosModalComponent,
+    ResumenSaldosModalComponent,
   ],
   imports: [
     BrowserModule,

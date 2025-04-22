@@ -74,7 +74,6 @@ export class LoginComponent {
 
   recuperaContrasena() {
     // Llamar al servicio de login
-    debugger;
     this.loading = true;
     this.loginService
       .recuperaContrasena(this.username)

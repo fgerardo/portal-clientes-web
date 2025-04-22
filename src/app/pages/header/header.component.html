@@ -47,7 +47,7 @@
             <button mat-menu-item>
               <i class="fa fa-calendar-plus-o"></i> <span>Programar Pagos</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="abrirModalProximosPagos()">
               <i class="fa fa-calendar"></i> <span>Próximos Pagos</span>
             </button>
           </mat-menu>
@@ -56,7 +56,7 @@
           <button mat-button class="menu-item">
             <i class="fa fa-list-alt"></i> <span>Resumen</span>
           </button>
-          <button mat-button class="menu-item">
+          <button mat-button class="menu-item" *ngIf="isClientePension" (click)="abrirPaginaPensiones()">
             <i class="fa fa-users"></i> <span>Pensiones</span>
           </button>
           <button mat-button class="menu-item" (click)="abrirModalVigencias()">
@@ -71,7 +71,7 @@
           <button mat-button class="menu-item">
             <i class="fa fa-inbox"></i> <span>Quejas</span>
           </button>
-          <button mat-button class="menu-item salir">
+          <button mat-button class="menu-item salir" (click)="logout()">
             <i class="fa fa-sign-out"></i> <span>Salir</span>
           </button>
 
