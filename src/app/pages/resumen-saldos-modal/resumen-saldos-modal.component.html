@@ -1,1 +1,59 @@
-<p>resumen-saldos-modal works!</p>
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 class="modal-title">Resumen de saldos y sumas aseguradas</h2>
+    <button mat-icon-button (click)="cerrar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="modal-content">
+    <mat-dialog-content>
+
+      <!-- AHORRO -->
+      <ng-container *ngFor="let ahorro of resumenAhorro">
+        <h3 class="titulo-seccion">Ahorro e Inversión - Pesos</h3>
+        <table class="tabla-saldos">
+          <thead>
+            <tr>
+              <th>Póliza</th>
+              <th>Saldo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ahorro.infoPesos">
+              <td>{{ item.producto }}</td>
+              <td>{{ item.saldo }}</td>
+            </tr>
+            <tr class="total">
+              <td><strong>Total</strong></td>
+              <td><strong>{{ ahorro.sumaPolizaPesos }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+
+      <!-- SALUD -->
+      <ng-container *ngFor="let salud of resumenSalud">
+        <h3 class="titulo-seccion">Salud, Protección y Hogar - Pesos</h3>
+        <table class="tabla-saldos">
+          <thead>
+            <tr>
+              <th>Póliza</th>
+              <th>Suma Asegurada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of salud.infoPesos">
+              <td>{{ item.producto }}</td>
+              <td>{{ item.saldo }}</td>
+            </tr>
+            <tr class="total">
+              <td><strong>Total</strong></td>
+              <td><strong>{{ salud.sumaPolizaPesos }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+
+    </mat-dialog-content>
+  </div>
+</div>

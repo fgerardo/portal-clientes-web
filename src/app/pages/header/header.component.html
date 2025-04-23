@@ -53,7 +53,7 @@
           </mat-menu>
 
           <!-- Otros sin submenú -->
-          <button mat-button class="menu-item">
+          <button mat-button class="menu-item" (click)="abrirModalResumenSaldos()">
             <i class="fa fa-list-alt"></i> <span>Resumen</span>
           </button>
           <button mat-button class="menu-item" *ngIf="isClientePension" (click)="abrirPaginaPensiones()">

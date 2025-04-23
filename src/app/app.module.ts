@@ -31,6 +31,7 @@ import { TramitesModalComponent } from './pages/tramites-modal/tramites-modal.co
 import { VigenciasModalComponent } from './pages/vigencias-modal/vigencias-modal.component';
 import { ProximosPagosModalComponent } from './pages/proximos-pagos-modal/proximos-pagos-modal.component';
 import { ResumenSaldosModalComponent } from './pages/resumen-saldos-modal/resumen-saldos-modal.component';
+import { SpinnerComponent } from './pages/spinner/spinner.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { ResumenSaldosModalComponent } from './pages/resumen-saldos-modal/resume
     VigenciasModalComponent,
     ProximosPagosModalComponent,
     ResumenSaldosModalComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

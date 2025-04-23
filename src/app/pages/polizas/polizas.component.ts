@@ -29,7 +29,7 @@ export class PolizasComponent {
     { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' },
     { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' },
     { codigo: 'SVIP-43804', producto: 'Inversion', saldo: 0, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'AUIN-43804', producto: 'Autos', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' }
+    { codigo: 'AUIN-43804', producto: 'Auto', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' }
   ];
 
   selectedProducto: string = '';
@@ -95,16 +95,6 @@ export class PolizasComponent {
     this.selectedFamilia = null;
     this.limpiarFiltro();
   }
-
-  // seleccionarProducto(familia: string) {
-  //   console.log('Seleccionado:', familia);
-  //   this.selectedFamilia = familia;
-  //   // Filtrar las pólizas según la familia seleccionada
-  //   this.polizasFiltradas = this.filtrarPolizas(familia);
-
-  //   this.selectedProducto = familia.charAt(0).toUpperCase() + familia.slice(1);
-  //   this.polizasFiltradas = this.polizas.filter(p => p.producto.toLowerCase() === familia.toLowerCase());
-  // }
 
   // Función para filtrar las pólizas (ejemplo)
   filtrarPolizas(familia: string) {

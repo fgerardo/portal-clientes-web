@@ -7,6 +7,8 @@ import { TramitesModalComponent } from '../tramites-modal/tramites-modal.compone
 import { VigenciasModalComponent } from '../vigencias-modal/vigencias-modal.component';
 import { environment } from 'src/enviroments/environment.development';
 import { ProximosPagosModalComponent } from '../proximos-pagos-modal/proximos-pagos-modal.component';
+import { ResumenSaldosModalComponent } from '../resumen-saldos-modal/resumen-saldos-modal.component';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 interface Poliza {
   codigo: string;
@@ -30,7 +32,7 @@ export class HeaderComponent {
   fechaActualizada: string = '';
   isClientePension: boolean = false
 
-  constructor(private userService: AuthService, private router: Router, private userDataService: UserDataService, private dialog: MatDialog) {
+  constructor(private userService: AuthService, private router: Router, private userDataService: UserDataService, private dialog: MatDialog, private spinnerService: SpinnerService) {
     // 👇 Recuperamos el state
     console.log('Datos recibidos en HeaderComponent:', this.userDataService.getUserData());
   }
@@ -54,13 +56,16 @@ export class HeaderComponent {
   }
 
   consultarEstatusSiniestro() {
+    this.spinnerService.show();
     this.userService
       .consultarEstatusSiniestros(this.usuario) // Send the username and selected image ID
       .subscribe(
         (response) => {
+          this.spinnerService.hide();
           console.log(response);
         },
         (error) => {
+          this.spinnerService.hide();
           console.log('Error --> ', error);
         }
       );
@@ -90,7 +95,6 @@ export class HeaderComponent {
   }
 
   abrirModalVigencias() {
-    debugger;
     const vigencias = this.userDataService.getUserData().vigencias;
 
     this.dialog.open(VigenciasModalComponent, {
@@ -118,4 +122,14 @@ export class HeaderComponent {
     window.open(urlPensiones, '_blank');
   }
 
+  abrirModalResumenSaldos(){
+    debugger;
+    const resumenSaldo = this.userDataService.getUserData().sumaSaldo;
+    this.dialog.open(ResumenSaldosModalComponent, {
+      data: {
+        resumenSaldo
+      },
+      width: '550px'
+    });
+  }
 }

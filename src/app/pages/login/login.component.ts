@@ -8,6 +8,7 @@ import { ImagenesModalComponent } from '../imagenes-modal/imagenes-modal.compone
 import { CrearCuentaComponent } from '../crear-cuenta/crear-cuenta.component';
 import { ErrorService } from 'src/app/services/error.service';
 import { RecuperarContrasenaComponent } from '../recuperar-contrasena/recuperar-contrasena.component';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
   coordenadas: string = '';
 
 
-  constructor(private loginService: AuthService, private geolocationService: GeolocationService, private dialog: MatDialog, private errorService: ErrorService) { }
+  constructor(private loginService: AuthService, private geolocationService: GeolocationService, 
+    private dialog: MatDialog, private errorService: ErrorService, private spinnerService: SpinnerService) { }
 
   ngOnInit() {
     this.errorService.error$.subscribe(message => {
@@ -31,10 +33,12 @@ export class LoginComponent {
   }
 
   onLogin(loginForm: NgForm) {
+    this.spinnerService.show(); // Mostrar spinner global
     if (loginForm.valid) {
       // Obtiene las coordenadas antes de hacer login
       this.geolocationService.getGeolocation().subscribe(
         (coordinates) => {
+          this.spinnerService.hide(); // Ocultar spinner
           // Al obtener la geolocalización, asignamos las coordenadas
           this.coordenadas = `Latitud: ${coordinates.latitude}, Longitud: ${coordinates.longitude}`;
           console.log('Coordenadas obtenidas:', this.coordenadas);
@@ -42,6 +46,7 @@ export class LoginComponent {
           this.realizarLogin(this.coordenadas);
         },
         (error) => {
+          this.spinnerService.hide(); // Ocultar spinner
           console.log('Error al obtener geolocalización:', error);
           // Si hay un error con la geolocalización, puedes manejarlo aquí
           this.coordenadas = 'Latitud: N/A, Longitud: N/A';
@@ -49,23 +54,22 @@ export class LoginComponent {
         }
       );
     } else {
+      this.spinnerService.hide(); // Ocultar spinner
       this.errorMessage = 'Por favor, complete todos los campos.';
     }
   }
 
   realizarLogin(coordenadas: string) {
     // Llamar al servicio de login
-    this.loading = true;
+    this.spinnerService.show(); // Ocultar spinner
     this.loginService
       .login(this.username, this.password, coordenadas)
       .subscribe(
         (response) => {
-
-          this.loading = false;
           this.manejarRespuesta(response);
         },
         (error) => {
-          this.loading = false;
+          this.spinnerService.hide(); // Ocultar spinner
           console.error('Error de conexión:', error);
           this.errorMessage = 'Hubo un error al intentar la solicitud.';
         }
@@ -95,6 +99,7 @@ export class LoginComponent {
     const response = responseData?.response;
 
     if (!response) {
+      this.spinnerService.hide(); // Ocultar spinner
       this.errorMessage = 'Respuesta inválida del servidor.';
       return;
     }
@@ -119,11 +124,11 @@ export class LoginComponent {
           idImagen: imgObj.idImagen
         })) || [];
 
-        console.log("imagenes ",imagenes.idImagen);
+        console.log("imagenes ", imagenes.idImagen);
         // Shuffle the images randomly
         const shuffledImages = this.shuffleArray(imagenes);
 
-        console.log("shuffledImages ",shuffledImages);
+        console.log("shuffledImages ", shuffledImages);
 
         const flujo = responseData.response.flujo;
         const usuario = this.username;
@@ -138,6 +143,7 @@ export class LoginComponent {
         this.errorMessage = 'Respuesta desconocida del servidor.';
         break;
     }
+    this.spinnerService.hide(); // Ocultar spinner
   }
 
   abrirModalCrearCuenta(): void {
