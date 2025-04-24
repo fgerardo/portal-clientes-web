@@ -48,9 +48,9 @@ export class HeaderComponent {
     console.log("Usuario ", this.usuario);
 
     if (this.userDataService.getUserData()) {
-      this.nombreUsuario = this.userDataService.getUserData().generales.nombreCliente || '';
-      this.fechaClienteDesde = this.userDataService.getUserData().generales.clienteDesde || '';
-      this.fechaActualizada = this.userDataService.getUserData().generales.fechaUltimaActualizacion || this.hoy;
+      this.nombreUsuario = this.userDataService.getUserData().cliente.nombreCliente || '';
+      this.fechaClienteDesde = this.userDataService.getUserData().cliente.clienteDesde || '';
+      this.fechaActualizada = this.userDataService.getUserData().cliente.fechaUltimaActualizacion || this.hoy;
       this.isClientePension = this.userDataService.getUserData().clientePensiones.pension;
     }
   }
@@ -79,11 +79,12 @@ export class HeaderComponent {
 
 
   abrirModal() {
-    const polizas = this.userDataService.getUserData().poliza.map((p: any) => ({
+    debugger;
+    const polizas = this.userDataService.getUserData().polizaStr.map((p: any) => ({
       numeroPoliza: p.poliza.generales.numeroPoliza,
       familiaPoliza: p.poliza.generales.familiaPoliza
     }));
-    const listaTramites = this.userDataService.getUserData().tramites.listaTramites;
+    const listaTramites = this.userDataService.getUserData().tramitesStr.listaTramites;
 
     this.dialog.open(TramitesModalComponent, {
       data: {
@@ -124,7 +125,7 @@ export class HeaderComponent {
 
   abrirModalResumenSaldos(){
     debugger;
-    const resumenSaldo = this.userDataService.getUserData().sumaSaldo;
+    const resumenSaldo = this.userDataService.getUserData().sumasPolizas;
     this.dialog.open(ResumenSaldosModalComponent, {
       data: {
         resumenSaldo
