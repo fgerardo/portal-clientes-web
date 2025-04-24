@@ -29,10 +29,10 @@
             <div *ngFor="let poliza of polizasFiltradas" class="poliza-card"
                 [style.background-color]="getColorForFamily(poliza.producto.toLowerCase())">
                 <div class="poliza-codigo">{{ poliza.codigo }}</div>
-                <div class="poliza-producto">{{ poliza.producto }}</div>
-                <div class="poliza-saldo">
-                    {{ poliza.saldo | currency:'USD':'symbol-narrow':'1.2-2' }}
-                </div>
+                <div class="poliza-producto">{{ poliza.descripcion }}</div>
+                <div class="saldo" *ngIf="poliza.saldo && poliza.saldo > 0">
+                    ${{ poliza.saldo | number: '1.2-2' }}
+                  </div>
             </div>
         </div>
     </div>

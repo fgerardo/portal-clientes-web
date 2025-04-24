@@ -69,13 +69,19 @@
 
 .poliza-card {
     flex: 1 1 220px;
-    max-width: 300px;
+    max-width: 165px;
+    height: 140px; /* <- Fija la altura exacta para todas */
     border-radius: 12px;
     padding: 1rem;
     background-color: #004b8d;
     color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+
 
 /* .poliza-card {
     border-radius: 12px;
@@ -100,9 +106,12 @@
 }
 
 .poliza-producto {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-}
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
 .poliza-saldo {
     font-size: 0.95rem;

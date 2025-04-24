@@ -30,7 +30,8 @@ export class HeaderComponent {
   nombreUsuario: string = '';
   fechaClienteDesde: string = '';
   fechaActualizada: string = '';
-  isClientePension: boolean = false
+  isClientePension: boolean = false;
+  fotoCliente: string = '';
 
   constructor(private userService: AuthService, private router: Router, private userDataService: UserDataService, private dialog: MatDialog, private spinnerService: SpinnerService) {
     // 👇 Recuperamos el state
@@ -52,6 +53,7 @@ export class HeaderComponent {
       this.fechaClienteDesde = this.userDataService.getUserData().cliente.clienteDesde || '';
       this.fechaActualizada = this.userDataService.getUserData().cliente.fechaUltimaActualizacion || this.hoy;
       this.isClientePension = this.userDataService.getUserData().clientePensiones.pension;
+      this.fotoCliente = this.userDataService.getUserData().cliente.fotoCliente;
     }
   }
 

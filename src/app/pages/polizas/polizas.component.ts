@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SpinnerService } from 'src/app/services/spinner.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 interface Poliza {
   codigo: string;
@@ -21,24 +23,39 @@ export class PolizasComponent {
   hoy = new Date().toLocaleDateString('es-MX');
   selectedFamilia: string | null = null;
   mostrarAlerta: boolean = false;
-
-  // 🔸 Lista completa de pólizas
-  polizas: Poliza[] = [
-    { codigo: 'OPPT-10889', producto: 'Ahorro', saldo: 645525.04, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'OPPT-11016', producto: 'Ahorro', saldo: 1246.55, descripcion: 'SALDO' },
-    { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'PLU2-43804', producto: 'Salud', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'SVIP-43804', producto: 'Inversion', saldo: 0, descripcion: 'SALDO MONEDA LOCAL' },
-    { codigo: 'AUIN-43804', producto: 'Auto', saldo: 540730.66, descripcion: 'SALDO MONEDA LOCAL' }
-  ];
-
+  polizas: Poliza[] = [];
+  polizasFiltradas: Poliza[] = [];
   selectedProducto: string = '';
-  polizasFiltradas: Poliza[] = this.polizas;
+
+  constructor(private userDataService: UserDataService, private spinnerService: SpinnerService) {
+    // 👇 Recuperamos el state
+    console.log('Datos recibidos en PolizasComponent:', this.userDataService.getUserData().cliente.polizas);
+  }
+
+  
+  ngOnInit() {
+    const polizasRaw = this.userDataService.getUserData().polizaStr;
+
+    this.polizas = polizasRaw.map((p: any) => {
+      const saldoLimpio = Number(p.poliza.generales?.saldo?.replace(/\$|,/g, '') || 0);
+
+      return {
+        codigo: p.poliza.generales?.numeroPoliza || '',
+        producto: p.poliza.familiaColor || '',
+        saldo: saldoLimpio,
+        descripcion: p.poliza.generales?.etiqueta || ''
+      };
+    });
+
+    this.polizasFiltradas = this.polizas; // Inicialmente muestra todas
+    console.log('Polizas transformadas:', this.polizas);
+  }
+
 
   dataFamilias: any = {
     ahorro: true,
     salud: true,
-    daños: true,
+    hogar: true,
     proteccion: true,
     inversion: true,
     auto: true,
@@ -47,7 +64,7 @@ export class PolizasComponent {
 
   sectores = [
     { familia: 'salud', angInicio: 0, angFin: 60, class: 'p1' },     // Celeste
-    { familia: 'daños', angInicio: 60, angFin: 120, class: 'p2' },       // Verde
+    { familia: 'hogar', angInicio: 60, angFin: 120, class: 'p2' },       // Verde
     { familia: 'proteccion', angInicio: 120, angFin: 180, class: 'p3' },
     { familia: 'inversion', angInicio: 180, angFin: 240, class: 'p4' },
     { familia: 'auto', angInicio: 240, angFin: 300, class: 'p5' },
@@ -59,9 +76,9 @@ export class PolizasComponent {
     const colores: Record<string, string> = {
       ahorro: '#064887',
       salud: '#3bbded',
-      daños: '#07672f',
+      hogar: '#07672f',
       proteccion: '#d1ebf0',
-      inversion: '#d1d9ea',
+      inversion: '#7197ba',
       auto: '#87a4d9'
     };
     return this.dataFamilias[familia] ? colores[familia] : '#e2e2e2';
